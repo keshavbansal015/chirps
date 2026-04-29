@@ -18,7 +18,11 @@ func getUserID(ctx context.Context) (int32, error) {
 	if !ok {
 		return 0, newError(codes.Unauthenticated)
 	}
-	userID, err := strconv.Atoi(md.Get("user-id")[0])
+	userIDs := md.Get("user-id")
+	if len(userIDs) == 0 {
+		return 0, newError(codes.Unauthenticated)
+	}
+	userID, err := strconv.Atoi(userIDs[0])
 	if err != nil {
 		return 0, err
 	}

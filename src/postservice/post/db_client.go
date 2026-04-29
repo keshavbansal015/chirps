@@ -9,10 +9,27 @@ import (
 	pb "github.com/keshavbansal015/chirps/src/postservice/genproto"
 )
 
+// DbClientInterface defines the database operations for testing
+type DbClientInterface interface {
+	createPost(content string, userID int32) (int32, error)
+	getFeed(page int32, limit int32, currentUserID int32) ([]*pb.Post, error)
+	getPosts(userID int32, page int32, limit int32, currentUserID int32) ([]*pb.Post, error)
+	getLikedPosts(userID int32, page int32, limit int32, currentUserID int32) ([]*pb.Post, error)
+	getPost(id int32, currentUserID int32) (*pb.Post, error)
+	deletePost(postID int32, userID int32) error
+	likePost(postID int32, userID int32) error
+	unlikePost(postID int32, userID int32) error
+	repostPost(postID int32, userID int32) error
+	removeRepost(postID int32, userID int32) error
+}
+
 // DbClient manages the communication between services and database
 type DbClient struct {
 	db *pgxpool.Pool
 }
+
+// Ensure DbClient implements DbClientInterface
+var _ DbClientInterface = (*DbClient)(nil)
 
 // NewDbClient creates a new DbClient instance
 func NewDbClient(dbURL string) *DbClient {

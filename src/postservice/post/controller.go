@@ -11,10 +11,10 @@ import (
 type controller struct {
 	pb.UnsafePostServiceServer
 
-	dbClient *DbClient
+	dbClient DbClientInterface
 }
 
-func newController(dbClient *DbClient) *controller {
+func newController(dbClient DbClientInterface) *controller {
 	return &controller{dbClient: dbClient}
 }
 
