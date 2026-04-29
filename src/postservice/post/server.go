@@ -3,7 +3,7 @@ package post
 import (
 	"google.golang.org/grpc"
 
-	pb "github.com/keshavbansal015/chirp/src/postservice/genproto"
+	pb "github.com/keshavbansal015/chirps/src/postservice/genproto"
 )
 
 // CreateServer creates a new grpc server

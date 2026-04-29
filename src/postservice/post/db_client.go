@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/jackc/pgx/v5/pgxpool"
 
-	pb "github.com/keshavbansal015/chirp/src/postservice/genproto"
+	pb "github.com/keshavbansal015/chirps/src/postservice/genproto"
 )
 
 // DbClient manages the communication between services and database
@@ -22,12 +22,12 @@ func NewDbClient(dbURL string) *DbClient {
 	}
 	config.MaxConns = 10
 
-	db, err := pgxpool.ConnectConfig(context.Background(), config)
+	db, err := pgxpool.NewWithConfig(context.Background(), config)
 	if err != nil {
 		log.Fatalf("Unable to connect to database: %v", err)
 	}
 
-	return &DbClient{db}
+	return &DbClient{db: db}
 }
 
 // Close closes the existing connection to the database
