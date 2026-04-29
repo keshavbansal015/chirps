@@ -1,0 +1,24 @@
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules
+build
+dist
+
+# Python
+venv
+__pycache__
+
+# Go
+bin
+pkg
+vendor
+
+# Logs
+npm-debug.log*
+
+# Editors
+.vscode
+*.code-workspace
+*.sw*

@@ -1,0 +1,9 @@
+@import '../../../styles/fonts';
+@import '../../../styles/colors';
+
+.settings-menu-item.header {
+  font-weight: $font-weight-semibold;
+  background: var(--bg-tertiary);
+  font-size: rem(16px, 14px);
+  transition: background-color 0.3s ease;
+}

@@ -1,0 +1,42 @@
+@import 'colors';
+
+// CSS Variables for theming
+:root {
+  // Light mode (default)
+  --bg-primary: #{$background-color};
+  --bg-secondary: #{$primary-color};
+  --bg-tertiary: #{$secondary-color};
+  --bg-hover: #{$selected-color};
+  
+  --text-primary: #{$primary-text-color};
+  --text-secondary: #{$detail-text-color};
+  --text-placeholder: #{$text-placeholder-color};
+  
+  --accent-primary: #{$active-color};
+  --accent-secondary: #{$active-button-color};
+  --error: #{$error-color};
+  
+  --shadow: #{$shadow-color};
+  --border: #{rgba(0, 0, 0, 0.1)};
+  --overlay: #{rgba(0, 0, 0, 0.5)};
+}
+
+[data-theme='dark'] {
+  // Dark mode
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-hover: #2d3a4f;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-placeholder: #64748b;
+  
+  --accent-primary: #38bdf8;
+  --accent-secondary: #0284c7;
+  --error: #f87171;
+  
+  --shadow: #{rgba(0, 0, 0, 0.5)};
+  --border: #{rgba(255, 255, 255, 0.1)};
+  --overlay: #{rgba(0, 0, 0, 0.7)};
+}

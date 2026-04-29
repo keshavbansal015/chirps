@@ -1,0 +1,34 @@
+@import 'colors';
+@import 'variables';
+
+@function rem($pixels, $browser-context: 16) {
+  @return ($pixels / $browser-context) * 1rem;
+}
+
+@mixin border-dark {
+  border: $border-width-sm solid var(--text-primary);
+}
+
+@mixin border {
+  border: $border-width-sm solid var(--border);
+}
+
+@mixin separator-top {
+  border-top: $border-width-sm solid var(--border);
+}
+
+@mixin separator {
+  border-bottom: $border-width-sm solid var(--border);
+}
+
+@mixin active-border {
+  border-bottom: $border-width-md solid var(--accent-secondary);
+}
+
+@mixin full-screen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

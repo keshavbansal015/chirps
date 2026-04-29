@@ -1,0 +1,235 @@
+@import 'colors';
+@import 'variables';
+@import 'fonts';
+
+// Common
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bottom-shadow {
+  border-bottom: $border-width-sm solid $shadow-color;
+}
+
+.main-content {
+  width: 100%;
+  max-width: $content-main-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-component-width;
+}
+
+// Buttons
+
+$button-background-color: var(--accent-primary);
+
+.button {
+  background: $button-background-color;
+  text-decoration: none;
+  padding: $padding * 0.7 $padding;
+  font-size: rem(15);
+  color: white;
+  border-radius: 25%/50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:not(:disabled) {
+    &:hover, &:focus {
+      background: var(--accent-secondary);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.outline-button {
+  border-style: solid;
+  border-width: $border-width-sm;
+  padding: $padding * 0.7 $padding;
+  border-radius: 25%/50%;
+  border-color: var(--accent-primary);
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:not(:disabled) {
+    &:hover, &:focus {
+      border-color: var(--accent-secondary);
+      color: var(--accent-primary);
+      background: var(--bg-hover);
+    }
+
+    &:active {
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+      background: var(--bg-tertiary);
+    }
+  }
+}
+
+// Counters
+
+.counters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter-label {
+  font-size: rem(14);
+}
+
+.counter-value {
+  font-weight: $font-weight-semibold;
+}
+
+// User card
+
+.user-card.container {
+  background: var(--bg-secondary);
+  transition: background-color 0.3s ease;
+}
+
+.user-card .cover {
+  height: $cover-height;
+  background: lightblue;
+}
+
+.user-card .subtitle {
+  font-size: rem(14);
+  margin-top: rem(4);
+}
+
+// Form
+
+.fieldset {
+  margin-bottom: $spacing-md;
+  @include border;
+  height: $input-height;
+  max-width: $max-input-width;
+  border-radius: $border-radius-sm;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--bg-secondary);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  button {
+    margin-right: $padding;
+    background-color: transparent;
+  }
+
+  .visibility-button {
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+
+    &:active {
+      color: var(--accent-primary);
+    }
+  }
+
+  .form-input {
+    flex-grow: 1;
+    margin-left: $padding;
+    margin-right: $padding;
+    background: transparent;
+    color: var(--text-primary);
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: var(--text-placeholder);
+    }
+  }
+
+  textarea.form-input {
+    resize: none;
+    border: 0;
+    margin-top: $padding * 0.8;
+    margin-bottom: $padding * 0.8;
+  }
+
+  .input-icon {
+    margin-left: $padding;
+    color: var(--text-secondary);
+  }
+}
+
+.fieldset.long {
+  height: $input-height * 3;
+  align-items: flex-start;
+
+  .input-icon {
+    margin-top: $padding * 1.2;
+  }
+}
+
+.reference-label::after {
+  content: ' ';
+}
+
+.reference, .form-title, .form-message {
+  text-align: center;
+}
+
+.form-title {
+  margin-bottom: $spacing-sm;
+}
+
+.form-button {
+  min-width: 200px;
+  border-radius: $border-radius-sm;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-message, .action-form {
+  margin-bottom: $spacing-lg;
+}
+
+.form-content {
+  background: var(--bg-secondary);
+  margin-top: $spacing-md;
+  margin-bottom: $spacing-md;
+  padding: $spacing-lg;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  border-radius: $border-radius-md;
+  box-shadow: 0 2px 8px var(--shadow);
+}
