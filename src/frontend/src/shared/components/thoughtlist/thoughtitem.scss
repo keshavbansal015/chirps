@@ -1,0 +1,69 @@
+@import '../../../styles/variables';
+@import '../../../styles/helpers';
+@import '../../../styles/fonts';
+
+$context-icon-width: 16px;
+
+.wrapper {
+  display: flex;
+}
+
+.thought-item {
+  background: var(--bg-secondary);
+  transition: background-color 0.3s ease;
+}
+
+.buttons > button {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  height: 20px;
+  background-color: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+
+  &:active {
+    color: var(--accent-primary);
+  }
+}
+
+.profile-action {
+  margin: $padding 0 0;
+}
+
+.button-label {
+  margin-left: 5px;
+  font-size: rem(12);
+}
+
+.text {
+  margin: $padding 0 0 0;
+}
+
+.buttons {
+  display: flex;
+  margin: $padding 0;
+}
+
+.button-icon {
+  width: 20px;
+  height: 15px;
+}
+
+.time::before {
+  content: '\00b7 ';
+}
+
+.like-button {
+  margin-left: $spacing-md;
+}
+
+.name::after, .username::after {
+  content: ' ';
+}

@@ -1,0 +1,17 @@
+$background-color: #E6ECF0;
+$shadow-color: rgba(0, 0, 0, 0.25);
+
+$dark-background-color: rgba(0, 0, 0, 0.5);
+
+$primary-color: white;
+$secondary-color: darken($primary-color, 5%);
+$selected-color: darken($primary-color, 3%);
+$active-color: #1DA1F2;
+$error-color: #CB2431;
+$active-button-color: darken($active-color, 25%);
+
+$primary-text-color: #333333;
+$dark-primary-text-color: #ffffff;
+
+$detail-text-color: lighten($primary-text-color, 50%);
+$text-placeholder-color: gray;

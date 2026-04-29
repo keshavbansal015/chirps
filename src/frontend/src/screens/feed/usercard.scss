@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+
+.user-card .content {
+  display: flex;
+  flex-direction: row;
+  margin-left: $padding;
+}
+
+.counters {
+  margin: 0 0 $padding;
+}
+
+.user-card .texts {
+  margin: $padding;
+  margin-left: 0;
+}
+
+.user-card .title {
+  margin: 0;
+}

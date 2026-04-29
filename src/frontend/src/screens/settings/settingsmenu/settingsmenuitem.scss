@@ -1,0 +1,25 @@
+@import '../../../styles/colors';
+@import '../../../styles/variables';
+
+.settings-menu-button {
+  display: block;
+  color: var(--text-primary);
+  font-size: rem(16px, 14px);
+  transition: background-color 0.2s ease, color 0.3s ease;
+
+  &:hover {
+    background: var(--bg-hover);
+  }
+
+  &.active {
+    border-left: $border-width-lg solid var(--accent-primary);
+
+    .settings-menu-item-title {
+      margin-left: $spacing-sm - $border-width-lg;
+    }
+
+    &:hover {
+      background: var(--bg-secondary);
+    }
+  }
+}

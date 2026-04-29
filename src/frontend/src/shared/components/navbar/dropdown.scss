@@ -1,0 +1,39 @@
+@import '../../../styles/variables';
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+@import '../../../styles/helpers';
+
+.dropdown {
+  background: var(--bg-secondary);
+  @include border;
+  box-shadow: 0 3px 12px var(--shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-item-title {
+  margin: $spacing-sm;
+  display: inline-block;
+}
+
+.dropdown-button {
+  display: block;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+
+  &:active {
+    color: var(--text-primary);
+  }
+}
+
+.dropdown-item {
+  font-size: rem(17);
+  @include separator;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: var(--bg-hover);
+  }
+}

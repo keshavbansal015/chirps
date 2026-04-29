@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+@import '../../styles/helpers';
+@import '../../styles/colors';
+
+.control-bar-container {
+  background: var(--bg-secondary);
+  transition: background-color 0.3s ease;
+
+  .control-bar {
+    height: rem(50);
+    align-items: center;
+  }
+
+  .counters {
+    height: 100%;
+    justify-content: space-around;
+  }
+
+  .counter {
+    width: 24%;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+    padding: 0 $padding;
+
+    &.active {
+      @include active-border;
+    }
+
+    .counter-label {
+      font-size: rem(14);
+      font-weight: $font-weight-semibold;
+    }
+
+    .counter-value {
+      font-size: rem(17);
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+
