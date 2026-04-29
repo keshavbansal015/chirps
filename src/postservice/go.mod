@@ -1,4 +1,4 @@
-module github.com/keshavbansal015/chirp/src/postservice
+module github.com/keshavbansal015/chirps/src/postservice
 
 go 1.22
 

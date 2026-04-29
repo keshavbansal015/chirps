@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/keshavbansal015/chirp/src/postservice/post"
+	"github.com/keshavbansal015/chirps/src/postservice/post"
 )
 
 func main() {

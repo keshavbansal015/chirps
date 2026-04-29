@@ -1,13 +1,13 @@
 package post
 
 import (
-	"github.com/jackc/pgx/v4"
+	"github.com/jackc/pgx/v5"
 
-	pb "github.com/keshavbansal015/chirp/src/postservice/genproto"
+	pb "github.com/keshavbansal015/chirps/src/postservice/genproto"
 )
 
 type row interface {
-	Scan(dest ...interface{}) error
+	Scan(dest ...any) error
 }
 
 func mapPost(r row) (*pb.Post, error) {

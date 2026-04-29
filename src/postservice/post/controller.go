@@ -4,9 +4,8 @@ import (
 	"context"
 	"log"
 
+	pb "github.com/keshavbansal015/chirps/src/postservice/genproto"
 	"google.golang.org/grpc/codes"
-
-	pb "github.com/keshavbansal015/chirp/src/postservice/genproto"
 )
 
 type controller struct {
