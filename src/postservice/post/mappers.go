@@ -31,5 +31,8 @@ func mapPosts(r pgx.Rows) ([]*pb.Post, error) {
 		}
 		posts = append(posts, post)
 	}
+	if err := r.Err(); err != nil {
+		return nil, err
+	}
 	return posts, nil
 }
