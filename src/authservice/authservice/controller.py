@@ -1,11 +1,11 @@
 from grpc import StatusCode
 
-from authservice import thoughts_pb2, thoughts_pb2_grpc
+from authservice import chirp_pb2, chirp_pb2_grpc
 from authservice.crypto import generate_key, validate_password
 from authservice import logger
 
 
-class Controller(thoughts_pb2_grpc.AuthServiceServicer):
+class Controller(chirp_pb2_grpc.AuthServiceServicer):
     def __init__(self, db_client):
         self.db_client = db_client
 
@@ -21,6 +21,12 @@ class Controller(thoughts_pb2_grpc.AuthServiceServicer):
         except Exception as e:
             logger.print(f'Getting user failed: {e}')
             context.abort(StatusCode.INTERNAL)
+
+        if result is None:
+            context.abort(
+                StatusCode.UNAUTHENTICATED,
+                'Incorrect email or password.'
+            )
 
         if validate_password(request.password, result['password']) == False:
             context.abort(
@@ -48,7 +54,7 @@ class Controller(thoughts_pb2_grpc.AuthServiceServicer):
     def DeleteSession(self, request, context):
         try:
             self.db_client.delete_session(request.session_id)
-            return thoughts_pb2.Empty()
+            return chirp_pb2.Empty()
         except Exception as e:
             logger.print(f'Deleting session failed: {e}')
             context.abort(StatusCode.INTERNAL)

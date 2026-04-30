@@ -1,5 +1,5 @@
-CREATE DATABASE thoughts;
-\connect thoughts
+CREATE DATABASE chirps;
+\connect chirps
 
 -- Users
 

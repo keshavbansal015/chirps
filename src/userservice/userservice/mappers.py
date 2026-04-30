@@ -1,8 +1,8 @@
-from userservice import thoughts_pb2
+from userservice import chirp_pb2
 
 
 def map_user(row):
-    return thoughts_pb2.User(
+    return chirp_pb2.User(
         id=row[0],
         name=row[1],
         username=row[2],

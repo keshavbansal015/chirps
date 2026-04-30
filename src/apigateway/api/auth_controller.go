@@ -25,7 +25,7 @@ func newAuthController(addr string) *authController {
 // to create a new session. If the session is created successfully, it sets a cookie with the
 // session ID and returns the user ID in the response body.
 func (ac *authController) createSession(c echo.Context) error {
-	conn, err := grpc.Dial(ac.addr, insecureCredentials(), grpc.WithBlock())
+	conn, err := grpc.NewClient(ac.addr, insecureCredentials())
 	if err != nil {
 		log.Printf("Connecting to service failed: %v", err)
 		return echo.NewHTTPError(500)
@@ -57,7 +57,7 @@ func (ac *authController) validateSession(c echo.Context) error {
 		return echo.NewHTTPError(401)
 	}
 
-	conn, err := grpc.Dial(ac.addr, insecureCredentials(), grpc.WithBlock())
+	conn, err := grpc.NewClient(ac.addr, insecureCredentials())
 	if err != nil {
 		log.Printf("Connecting to service failed: %v", err)
 		return echo.NewHTTPError(500)
@@ -89,7 +89,7 @@ func (ac *authController) deleteSession(c echo.Context) error {
 		return echo.NewHTTPError(401)
 	}
 
-	conn, err := grpc.Dial(ac.addr, insecureCredentials(), grpc.WithBlock())
+	conn, err := grpc.NewClient(ac.addr, insecureCredentials())
 	if err != nil {
 		log.Printf("Connecting to service failed: %v", err)
 		return echo.NewHTTPError(500)

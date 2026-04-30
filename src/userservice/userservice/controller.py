@@ -1,12 +1,12 @@
 from grpc import StatusCode
 
-from userservice import thoughts_pb2_grpc, thoughts_pb2
+from userservice import chirp_pb2_grpc, chirp_pb2
 from userservice.crypto import generate_hash, validate_password
 from userservice.utils import is_valid_email
 from userservice import logger
 
 
-class Controller(thoughts_pb2_grpc.UserServiceServicer):
+class Controller(chirp_pb2_grpc.UserServiceServicer):
     def __init__(self, db_client):
         self.db_client = db_client
 
@@ -28,7 +28,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
             result = self.db_client.create_user(
                 request.name, request.username,
                 request.email, generate_hash(request.password))
-            return thoughts_pb2.Identifier(id=result)
+            return chirp_pb2.Identifier(id=result)
         except Exception as e:
             logger.print(f'Creating user failed: {e}')
             context.abort(
@@ -41,7 +41,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
 
         try:
             result = self.db_client.get_user(
-                request.user_id, request.username, user_id)
+                request.user_id, user_id)
         except Exception as e:
             logger.print(f'Getting user failed: {e}')
             context.abort(StatusCode.INTERNAL)
@@ -66,7 +66,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
             self.db_client.update_user(
                 user_id, request.name, request.username,
                 request.email, request.bio)
-            return thoughts_pb2.Empty()
+            return chirp_pb2.Empty()
         except Exception as e:
             logger.print(f'Updating user failed: {e}')
             context.abort(StatusCode.INTERNAL)
@@ -86,7 +86,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
             logger.print(f'Getting user failed: {e}')
             context.abort(StatusCode.INTERNAL)
 
-        if validate_password(request.password, result['password']) == False:
+        if validate_password(request.old_password, result['password']) == False:
             context.abort(
                 StatusCode.INVALID_ARGUMENT,
                 'Wrong password. Enter the correct current password.'
@@ -95,7 +95,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
         try:
             self.db_client.update_password(
                 user_id, generate_hash(request.password))
-            return thoughts_pb2.Empty()
+            return chirp_pb2.Empty()
         except Exception as e:
             logger.print(f'Updating user failed: {e}')
             context.abort(StatusCode.INTERNAL)
@@ -107,7 +107,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
             result = self.db_client.get_following(
                 request.user_id, request.page,
                 request.limit, user_id)
-            return thoughts_pb2.Users(users=result)
+            return chirp_pb2.Users(users=result)
         except Exception as e:
             logger.print(f'Getting users failed: {e}')
             context.abort(StatusCode.INTERNAL)
@@ -119,7 +119,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
             result = self.db_client.get_followers(
                 request.user_id, request.page,
                 request.limit, user_id)
-            return thoughts_pb2.Users(users=result)
+            return chirp_pb2.Users(users=result)
         except Exception as e:
             logger.print(f'Getting users failed: {e}')
             context.abort(StatusCode.INTERNAL)
@@ -129,7 +129,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
 
         try:
             self.db_client.follow_user(request.user_id, user_id)
-            return thoughts_pb2.Empty()
+            return chirp_pb2.Empty()
         except Exception as e:
             logger.print(f'Following user failed: {e}')
             context.abort(StatusCode.INTERNAL)
@@ -139,7 +139,7 @@ class Controller(thoughts_pb2_grpc.UserServiceServicer):
 
         try:
             self.db_client.unfollow_user(request.user_id, user_id)
-            return thoughts_pb2.Empty()
+            return chirp_pb2.Empty()
         except Exception as e:
             logger.print(f'Unfollowing user failed: {e}')
             context.abort(StatusCode.INTERNAL)
